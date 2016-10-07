@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Python Unusual Bases</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="../index.html">Daily Programmer</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Python Code
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="ReverseFactorial.html">Reverse Factorial</a></li>
+                    <li><a href="UnusualBases.html">Unusual Bases</a></li>
+                    <li><a href="GameOfThrees.html">Game of Threes</a></li>
+                    <li><a href="SimplifyFractions.html">Simplify Fractions</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">JavaScript
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="../js/ReverseFactorial.html">Reverse Factorial</a></li>
+                    <li><a href="#">Unusual Bases</a></li>
+                    <li><a href="#">Game of Threes</a></li>
+                    <li><a href="#">Simplify Fractions</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h1><a href="https://www.reddit.com/r/dailyprogrammer/comments/5196fi/20160905_challenge_282_easy_unusual_bases/">
+        Unusual Bases
+    </a></h1>
+    <h3>Solution:</h3>
+    <p>
+    <div style="width: 650px;">
+        <pre><code>def todeca(num):
+    num = str(num)
+    num = num[::-1]
+    count = 0
+    pos = 0
+    for i in num:
+        if i == '1':
+            count += 2**pos
+        pos += 1
+    return count
+
+
+def tobinary(num):
+    result = ""
+    while num != 0:
+        if num % 2 == 0:
+            result += '0'
+        else:
+            result += '1'
+        num //= 2
+    result = result[::-1]
+    return result
+
+
+def fib(n):
+    a, b = 1,1
+    for i in range(n-1):
+        a, b = b, a+b
+    return int(a)
+
+
+def tofib(num):
+    num = str(num)
+    num = num[::-1]
+    pos = 1
+    count = 0
+    for i in num:
+        if i == '1':
+            count += int(fib(pos))
+        pos += 1
+    return count
+
+
+def main():
+    flag = True
+    while flag:
+        choice = input("1. Binary/Decimal Converter\n"
+                       "2. Decimal/Fibonacci Converter\n"
+                       "3. Exit\n")
+        if choice == '1':
+            base = input("Enter number base: ")
+            number = input("Enter number: ")
+            if base == '2':
+                print(todeca(number), "\n")
+            elif base == '10':
+                print(tobinary(int(number)), "\n")
+        elif choice == '2':
+            base = input("Enter number base (F for fib): ")
+            number = input("Enter number: ")
+            if base == '2':
+                print(tofib(number), "\n")
+            elif base == 'F':
+                print("WIP\n")
+        else:
+            flag = False
+
+
+if __name__ == "__main__":
+    main()</code></pre>
+        <h3>Sample Output:</h3>
+        <samp>
+            Enter number base: 10<br>
+            Enter number: 2173<br>
+            <span style="color: red">100001111101</span><br> <br>
+            Enter number base (F for fib): 2<br>
+            Enter number: 10101110101<br>
+            <span style="color: red">152</span>
+        </samp>
+    </div>
+    </p>
+</div>
+</body>
+</html>

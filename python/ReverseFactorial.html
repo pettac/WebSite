@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Python Reverse Factorial</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="../index.html">Daily Programmer</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Python Code
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="ReverseFactorial.html">Reverse Factorial</a></li>
+                    <li><a href="UnusualBases.html">Unusual Bases</a></li>
+                    <li><a href="GameOfThrees.html">Game of Threes</a></li>
+                    <li><a href="SimplifyFractions.html">Simplify Fractions</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">JavaScript
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="../js/ReverseFactorial.html">Reverse Factorial</a></li>
+                    <li><a href="#">Unusual Bases</a></li>
+                    <li><a href="#">Game of Threes</a></li>
+                    <li><a href="#">Simplify Fractions</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h1><a href="https://www.reddit.com/r/dailyprogrammer/comments/55nior/20161003_challenge_286_easy_reverse_factorial/">
+        Reverse Factorial
+    </a></h1>
+    <h3>Solution:</h3>
+    <p>
+        <div style="width: 500px;">
+        <pre><code>def factorial(number):
+    i = 2
+    while number % i == 0:
+        number /= i
+        i += 1
+        if number/i == 1:
+            break
+    else:
+        return 0
+    return number
+
+
+def main():
+    value = input("Enter a number: ")
+    result = factorial(int(value))
+    if result == 0:
+        print("NONE")
+    else:
+        print(str(int(result))+"!")
+
+
+if __name__ == "__main__":
+    main()</code></pre>
+        <h3>Sample Output:</h3>
+        <samp>
+Enter a number: 120<br>
+<span style="color: red">5!</span><br>
+Enter a number: 150<br>
+<span style="color: red">NONE</span>
+        </samp>
+    </div>
+    </p>
+</div>
+</body>
+</html>
