@@ -1,27 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>JavaScript Reverse Factorial</title>
+<title>JavaScript Game Of Threes</title>
+<style type="text/css">
+    div.ui-menu li {
+        list-style:none;
+        background-image:none;
+        background-repeat:none;
+        background-position:0;
+    }
+    ul
+    {
+        list-style-type:none;
+        padding:0px;
+        margin:0px;
+    }
+</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
-    function factorial() {
-        var i = 2;
+    function gameOfThrees(){
+        var results = [];
+        var steps = [];
         var input = document.getElementById("input").value;
-        var num = parseInt(input)
-        while (num % i == 0) {
-            num /= i;
-            i += 1;
-            if (num / i == 1) {
-                document.getElementById("result").innerHTML = input + " is "+num.toString()+"!";
-                break;
+        var num = parseInt(input);
+        while (num != 1){
+            if (num % 3 == 0) {
+                results.push(num);
+                steps.push(0);
             }
+            else if (num % 3 == 1){
+                results.push(num);
+                steps.push(-1);
+                num -= 1;
+            }
+            else if (num % 3 == 2){
+                results.push(num);
+                steps.push(1);
+                num += 1
+            }
+            num /= 3;
         }
-        if (num % 0 != 0 && num/i != 1){
-            document.getElementById("result").innerHTML = "No factorial found";
+        var text = "<ul>";
+        for (var i in results){
+            text += "<li>" + results[i].toString() + " " +
+                    steps[i].toString()+"</li>";
         }
+        text += "<li>1</li>";
+        text += "</ul>";
+        document.getElementById("result").innerHTML = text;
+
     }
 </script>
 <body>
@@ -45,7 +75,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">JavaScript
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="ReverseFactorial.html">Reverse Factorial</a></li>
+                    <li><a href="#">Reverse Factorial</a></li>
                     <li><a href="#">Unusual Bases</a></li>
                     <li><a href="GameOfThrees.html">Game of Threes</a></li>
                     <li><a href="#">Simplify Fractions</a></li>
@@ -54,43 +84,71 @@
         </ul>
     </div>
 </nav>
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-1"><b>Number:</b></div>
-        <div class="col-sm-1"><b>Result:</b></div>
     </div>
     <div class="row">
-        <div class="col-sm-1">
+        <div class="col-sm-2">
             <div class="form-group">
                 <textarea class="form-control" rows="1" id="input" style="width:100%" cols="20"></textarea>
             </div>
         </div>
+        <div class="col-sm-2"><button type="button" class="btn btn-primary" onclick="gameOfThrees()">Submit</button></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"><b>Result:</b></div>
+    </div>
+    <div class="row">
         <div class="col-sm-2" id="result"></div>
     </div>
-    <button type="button" class="btn btn-primary" onclick="factorial()">Submit</button>
-    <br><br>
 
+    <br><br>
+    <!--
+
+
+    <div class="ui-menu">
+    <p id="result"></p>
+    </div>
+    -->
     <h3>JavaScript Function</h3>
 
-    <div style="width: 850px;">
-        <pre><code>function factorial() {
-    var i = 2;
+    <div style="width: 800px;">
+        <pre><code>function gameOfThrees(){
+    var results = [];
+    var steps = [];
     var input = document.getElementById("input").value;
-    var num = parseInt(input)
-    while (num % i == 0) {
-        num /= i;
-        i += 1;
-        if (num / i == 1) {
-            document.getElementById("result").innerHTML = input + " is "+num.toString()+"!";
-            break;
+    var num = parseInt(input);
+    while (num != 1){
+        if (num % 3 == 0) {
+            results.push(num);
+            steps.push(0);
         }
+        else if (num % 3 == 1){
+            results.push(num);
+            steps.push(-1);
+            num -= 1;
+        }
+        else if (num % 3 == 2){
+            results.push(num);
+            steps.push(1);
+            num += 1
+        }
+        num /= 3;
     }
-    if (num % 0 != 0 && num/i != 1){
-        document.getElementById("result").innerHTML = "No factorial found";
+    var text = "&ltul&gt";
+    for (var i in results){
+        text += "&ltli&gt" + results[i].toString() + " " + steps[i].toString()+"&lt/li&gt";
     }
+    text += "&ltli&gt1&lt/li&gt";
+    text += "&lt/ul&gt";
+    document.getElementById("result").innerHTML = text;
 }</code></pre>
     </div>
 
 </div>
+
 </body>
 </html>
