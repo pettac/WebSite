@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>JavaScript Reverse Factorial</title>
+<title>JavaScript Simplify Fractions</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
-    function factorial() {
-        var i = 2;
-        var input = document.getElementById("input").value;
-        var num = parseInt(input)
-        while (num % i == 0) {
-            num /= i;
-            i += 1;
-            if (num / i == 1) {
-                document.getElementById("result").innerHTML = input + " is "+num.toString()+"!";
-                break;
-            }
+    function gcd() {
+        var x = parseInt(document.getElementById("numerator").value);
+        var y = parseInt(document.getElementById("denominator").value);
+        var num = x;
+        var den = y;
+        var temp;
+        while (y != 0) {
+            temp = x;
+            x = y;
+            y = temp % y;
         }
-        if (num % 0 != 0 && num/i != 1){
-            document.getElementById("result").innerHTML = "No factorial found";
-        }
+        num /= x;
+        den /= x;
+        document.getElementById("result").innerHTML = "<sup>"+num+"</sup>&frasl;<sub>"+den+"</sub>";
     }
 </script>
 <body>
@@ -56,38 +55,51 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-1"><b>Number:</b></div>
-        <div class="col-sm-1"><b>Result:</b></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-1">
+        <div class="col-sm-1" style="text-align:right; padding-top:5px;"><b>Numerator:</b></div>
+        <div class="col-sm-1" style="text-align:left;">
             <div class="form-group">
-                <input type="text" class="form-control" rows="1" id="input" style="width:100%"></input>
+                <input type="text" class="form-control" rows="1" id="numerator" style="width:70%"></input>
             </div>
         </div>
-        <div class="col-sm-2" id="result"></div>
     </div>
-    <button type="button" class="btn btn-primary" onclick="factorial()">Submit</button>
+    <div class="row">
+        <div class="col-sm-1" style="text-align:right; padding-top:5px;"><b>Denominator:</b></div>
+        <div class="col-sm-1" style="text-align:left;">
+            <div class="form-group">
+                <input type="text" class="form-control" rows="1" id="denominator" style="width:70%"></input>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1" style="text-align:right;"><b>Result:</b></div>
+        <div class="col-sm-1">
+            <p id="result">
+                <!--<sup id="numeratorResult"></sup>&frasl;<sub id="denominatorResult"></sub>-->
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"><button type="button" class="btn btn-primary" onclick="gcd()">Submit</button></div>
+    </div>
     <br><br>
 
     <h3>JavaScript Function</h3>
 
     <div style="width: 850px;">
-        <pre><code>function factorial() {
-    var i = 2;
-    var input = document.getElementById("input").value;
-    var num = parseInt(input)
-    while (num % i == 0) {
-        num /= i;
-        i += 1;
-        if (num / i == 1) {
-            document.getElementById("result").innerHTML = input + " is "+num.toString()+"!";
-            break;
-        }
+        <pre><code>function gcd() {
+    var x = parseInt(document.getElementById("numerator").value);
+    var y = parseInt(document.getElementById("denominator").value);
+    var num = x;
+    var den = y;
+    var temp;
+    while (y != 0) {
+        temp = x;
+        x = y;
+        y = temp % y;
     }
-    if (num % 0 != 0 && num/i != 1){
-        document.getElementById("result").innerHTML = "No factorial found";
-    }
+    num /= x;
+    den /= x;
+    document.getElementById("result").innerHTML = "&lt;sup&gt;"+num+"&lt;/sup&gt;&amp;frasl;&lt;sub&gt;"+den+"&lt;/sub&gt;";
 }</code></pre>
     </div>
 
