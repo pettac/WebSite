@@ -4,15 +4,15 @@
 <style type="text/css">
     div.ui-menu li {
         list-style:none;
-        background-image:none;
-        background-repeat:none;
-        background-position:0;
     }
     ul
     {
         list-style-type:none;
         padding:0px;
         margin:0px;
+    }
+    body {
+        padding-top: 40px;
     }
 </style>
 <meta charset="utf-8">
@@ -55,7 +55,7 @@
     }
 </script>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="../index.html">Daily Programmer</a>
@@ -97,7 +97,7 @@
     <div class="row">
         <div class="col-sm-2">
             <div class="form-group">
-                <input type="text" class="form-control" rows="1" id="input" style="width:100%"></input>
+                <input type="text" class="form-control" rows="1" id="input" style="width:100%">
             </div>
         </div>
         <div class="col-sm-2"><button type="button" class="btn btn-primary" onclick="gameOfThrees()">Submit</button></div>

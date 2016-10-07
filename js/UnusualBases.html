@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>JavaScript Unusual Bases</title>
+<style type="text/css">
+    body {
+        padding-top: 40px;
+    }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    function gcd() {
+        var x = parseInt(document.getElementById("numerator").value);
+        var y = parseInt(document.getElementById("denominator").value);
+        var num = x;
+        var den = y;
+        var temp;
+        while (y != 0) {
+            temp = x;
+            x = y;
+            y = temp % y;
+        }
+        num /= x;
+        den /= x;
+        document.getElementById("result").innerHTML = "<sup>"+num+"</sup>&frasl;<sub>"+den+"</sub>";
+    }
+</script>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="../index.html">Daily Programmer</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Python Code
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="../python/ReverseFactorial.html">Reverse Factorial</a></li>
+                    <li><a href="../python/UnusualBases.html">Unusual Bases</a></li>
+                    <li><a href="../python/GameOfThrees.html">Game of Threes</a></li>
+                    <li><a href="../python/SimplifyFractions.html">Simplify Fractions</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">JavaScript
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="ReverseFactorial.html">Reverse Factorial</a></li>
+                    <li><a href="UnusualBases.html">Unusual Bases</a></li>
+                    <li><a href="GameOfThrees.html">Game of Threes</a></li>
+                    <li><a href="SimplifyFractions.html">Simplify Fractions</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+    <h1><a href="https://www.reddit.com/r/dailyprogrammer/comments/4uhqdb/20160725_challenge_277_easy_simplifying_fractions/">
+        Simplifying Fractions
+    </a></h1>
+    <br>
+    <div class="row">
+        <div class="col-sm-1" style="text-align:right; padding-top:5px;"><b>Numerator:</b></div>
+        <div class="col-sm-1" style="text-align:left;">
+            <div class="form-group">
+                <input type="text" class="form-control" rows="1" id="numerator" style="width:70%">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1" style="text-align:right; padding-top:5px;"><b>Denominator:</b></div>
+        <div class="col-sm-1" style="text-align:left;">
+            <div class="form-group">
+                <input type="text" class="form-control" rows="1" id="denominator" style="width:70%">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1" style="text-align:right;"><b>Result:</b></div>
+        <div class="col-sm-1">
+            <p id="result">
+                <!--<sup id="numeratorResult"></sup>&frasl;<sub id="denominatorResult"></sub>-->
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"><button type="button" class="btn btn-primary" onclick="gcd()">Submit</button></div>
+    </div>
+    <br><br>
+
+    <h3>JavaScript Function</h3>
+
+    <div style="width: 850px;">
+        <pre><code>function gcd() {
+    var x = parseInt(document.getElementById("numerator").value);
+    var y = parseInt(document.getElementById("denominator").value);
+    var num = x;
+    var den = y;
+    var temp;
+    while (y != 0) {
+        temp = x;
+        x = y;
+        y = temp % y;
+    }
+    num /= x;
+    den /= x;
+    document.getElementById("result").innerHTML = "&lt;sup&gt;"+num+"&lt;/sup&gt;&amp;frasl;&lt;sub&gt;"+den+"&lt;/sub&gt;";
+}</code></pre>
+    </div>
+
+</div>
+</body>
+</html>
