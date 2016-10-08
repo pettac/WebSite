@@ -11,23 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-    function gcd() {
-        var x = parseInt(document.getElementById("numerator").value);
-        var y = parseInt(document.getElementById("denominator").value);
-        var num = x;
-        var den = y;
-        var temp;
-        while (y != 0) {
-            temp = x;
-            x = y;
-            y = temp % y;
-        }
-        num /= x;
-        den /= x;
-        document.getElementById("result").innerHTML = "<sup>"+num+"</sup>&frasl;<sub>"+den+"</sub>";
-    }
-</script>
+<script src="UnusualBases.js"></script>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -59,56 +43,142 @@
     </div>
 </nav>
 <div class="container-fluid">
-    <h1><a href="https://www.reddit.com/r/dailyprogrammer/comments/4uhqdb/20160725_challenge_277_easy_simplifying_fractions/">
-        Simplifying Fractions
+    <h1><a href="https://www.reddit.com/r/dailyprogrammer/comments/5196fi/20160905_challenge_282_easy_unusual_bases/">
+        Unusual Bases
     </a></h1>
     <br>
     <div class="row">
-        <div class="col-sm-1" style="text-align:right; padding-top:5px;"><b>Numerator:</b></div>
-        <div class="col-sm-1" style="text-align:left;">
+        <div class="col-sm-2">
             <div class="form-group">
-                <input type="text" class="form-control" rows="1" id="numerator" style="width:70%">
+                <label for="fromList">From:</label>
+                <select class="form-control" id="fromList">
+                    <option value="0"></option>
+                    <option value="1">Binary</option>
+                    <option value="2">Decimal</option>
+                    <option value="3">Fibonacci</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label for="toList">To:</label>
+                <select class="form-control" id="toList">
+                    <option value="0"></option>
+                    <option value="1">Binary</option>
+                    <option value="2">Decimal</option>
+                    <option value="3">Fibonacci</option>
+                </select>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-1" style="text-align:right; padding-top:5px;"><b>Denominator:</b></div>
-        <div class="col-sm-1" style="text-align:left;">
+        <div class="col-sm-2">
             <div class="form-group">
-                <input type="text" class="form-control" rows="1" id="denominator" style="width:70%">
+            <textarea id="fromText" class="form-control" rows="2"></textarea>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <textarea id="toText" class="form-control" rows="2" readonly></textarea>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-1" style="text-align:right;"><b>Result:</b></div>
-        <div class="col-sm-1">
-            <p id="result">
-                <!--<sup id="numeratorResult"></sup>&frasl;<sub id="denominatorResult"></sub>-->
-            </p>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-primary" onclick="select()">
+            Submit</button>
+            <button type="button" class="btn btn-primary" onclick="reset()">
+                Reset</button>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2"><button type="button" class="btn btn-primary" onclick="gcd()">Submit</button></div>
     </div>
     <br><br>
+    <p>Still a work in progress. I need to add ability
+        to go from base Fibonacci to other bases.</p>
 
-    <h3>JavaScript Function</h3>
 
-    <div style="width: 850px;">
-        <pre><code>function gcd() {
-    var x = parseInt(document.getElementById("numerator").value);
-    var y = parseInt(document.getElementById("denominator").value);
-    var num = x;
-    var den = y;
+
+    <div style="width: 600px;">
+        <h3>Fibonacci Sequence</h3>
+        <pre><code>function fib(n){
+    var a = 1;
+    var b = 1;
     var temp;
-    while (y != 0) {
-        temp = x;
-        x = y;
-        y = temp % y;
+    for (var i=0; i&lt;n-1; i++){
+        temp = a;
+        a = b;
+        b = temp + b;
     }
-    num /= x;
-    den /= x;
-    document.getElementById("result").innerHTML = "&lt;sup&gt;"+num+"&lt;/sup&gt;&amp;frasl;&lt;sub&gt;"+den+"&lt;/sub&gt;";
+    return a;
+}</code></pre>
+        <h3>Binary to Decimal</h3>
+<pre><code>function binaryToDecimal(num){
+    num = num.split("").reverse().join("");
+
+    var count = 0.0;
+    var pos = 0;
+    for (var i=0; i&lt;num.length; i++){
+        if(num[i] == "1")
+            count += Math.pow(2, pos);
+        pos += 1;
+    }
+    return count.toString();
+}</code></pre>
+        <h3>Decimal To Binary</h3>
+<pre><code>function decimalToBinary(num){
+    var result = "";
+    while (num != 0){
+        if (num % 2 == 0)
+            result += "0";
+        else{
+            result += "1";
+        }
+        num = Math.floor(num/2);
+    }
+    return result.split("").reverse().join("");
+}</code></pre>
+        <h3>Binary to Fibonacci</h3>
+<pre><code>function binaryToFib(num) {
+    num = num.split("").reverse().join("");
+    var pos = 1;
+    var count = 0;
+    for (var i=0, len=num.length; i&lt;len; i++) {
+        if (num[i] == "1") {
+            count += fib(pos);
+        }
+        pos += 1;
+    }
+    return count;
+}</code></pre>
+        <h3>Select Function</h3>
+        <pre style="width: 700px;"><code>function select(){
+    var from = document.getElementById("fromList").value;
+    var to = document.getElementById("toList").value;
+    var num = document.getElementById("fromText").value;
+    //binary to decimal
+    if (from == 1 && to == 2) {
+        document.getElementById("toText").value = binaryToDecimal(num);
+    }
+    //decimal to binary
+    else if (from == 2 && to == 1){
+        document.getElementById("toText").value = decimalToBinary(num);
+    }
+    //binary to Fibonacci
+    else if (from == 1 && to == 3) {
+        document.getElementById("toText").value = binaryToFib(num);
+    }
+    //Fibonacci to binary
+    else if (from == 3 && to == 1) {
+        document.getElementById("toText").value = "WIP";
+    }
+    //decimal to Fibonacci
+    else if (from == 2 && to == 3){
+        document.getElementById("toText").value = binaryToFib(decimalToBinary(num));
+    }
+    //Fibonacci to decimal
+    else if (from == 3 && to == 2){
+        document.getElementById("toText").value = "WIP";
+    }
+
 }</code></pre>
     </div>
 
